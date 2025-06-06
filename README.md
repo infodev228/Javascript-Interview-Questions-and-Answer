@@ -6,7 +6,7 @@
 | 2.  | [What is call stack in javascript](#What-is-call-stack-in-javascript)           |
 | 3.  | [What is call back queue in javascript](#what-is-call-back-queue-in-javascript) |
 | 4.  | [What is Event Loop](#what-is-event-loop)                                       |
-| 5.  | [Screenshots](#screenshots)                                                     |
+| 5.  | [What is lexical scope in javascript](#what-is-lexical-scope)                   |
 | 6.  | [API Reference](#api-reference)                                                 |
 | 7.  | [FAQ](#faq)                                                                     |
 | 8.  | [Contributing](#contributing)                                                   |
@@ -46,7 +46,28 @@ Script start
 Script end
 Inside Promise
 Inside setTimeout
+```
 
 **Notes:**
 Microtasks `(Promises)` are handled before macrotasks `(setTimeout)`.
+
+## What is lexical scope
+
+Lexical scope means a function’s scope is defined by where the function is written in the code. It determines what variables are accessible to the function based on its position in the source code.
+
+```javascript
+function outer() {
+  let outerVar = "I'm from outer";
+
+  function inner() {
+    console.log(outerVar); // inner can access outerVar
+  }
+
+  inner();
+}
+
+outer();
 ```
+
+`inner() has lexical access to outerVar because it is defined inside the outer() function.
+The scope is based on the nesting structure of functions when the code is written.`
