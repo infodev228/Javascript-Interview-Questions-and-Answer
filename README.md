@@ -10,7 +10,7 @@
 | 6.  | [What is lexical scope in javascript](#what-is-lexical-scope)                                                    |
 | 7.  | [What is Debounce](#what-is-debounce)                                                                            |
 | 8.  | [Write a function sum that can be called like sum(1)(2)(3)...() and returns the total](#infinite-currying)       |
-| 9.  | [Contact](#contact)                                                                                              |
+| 9.  | [What Are Closures in JavaScript](#wha-are-closures-in-javaScript)                                               |
 | 10. | [Contact](#contact)                                                                                              |
 
 ## Premitive and non premitive data types
@@ -53,11 +53,11 @@ obj2.name = "Bob";
 console.log(obj1.name); // "Bob" (obj1 changed because obj2 references the same object)
 ```
 
-## What is call stack in javascript
+1. ## What is call stack in javascript
 
-## What is call back queue in javascript
+2. ## What is call back queue in javascript
 
-## What is Event Loop
+3. ## What is Event Loop
 
 The event loop monitors the call stack and callback queue. If the stack is empty, it pushes the first callback from the queue into the stack.
 
@@ -91,7 +91,7 @@ Microtasks `(Promises)` are handled before macrotasks `(setTimeout)`.
 
 **[⬆ Back to Top](#-table-of-contents)**
 
-## What is lexical scope
+4. ## What is lexical scope
 
 Lexical scope means a function’s scope is defined by where the function is written in the code. It determines what variables are accessible to the function based on its position in the source code.
 
@@ -114,7 +114,7 @@ The scope is based on the nesting structure of functions when the code is writte
 
 **[⬆ Back to Top](#-table-of-contents)**
 
-## What is debounce
+5. ## What is debounce
 
 Debouncing forces a function to wait a certain amount of time before run again.
 
@@ -130,7 +130,7 @@ function debounce(func, delay) {
 
 **[⬆ Back to Top](#-table-of-contents)**
 
-## Infinite Currying
+6. ## Infinite Currying
 
 ```javascript
 function add(a) {
@@ -149,3 +149,42 @@ console.log(add(1)(2)(3)(4)()); // 10
 `You keep calling add(n), and it keeps returning a new function. The addition happens when you finally call it with no argument (()).`
 
 **[⬆ Back to Top](#-table-of-contents)**
+
+7.  ## What Are Closures in JavaScript?
+
+    A closure is a function that remembers the variables from its lexical scope even when that function is executed outside of that scope.
+
+```javascript
+function outer() {
+  let counter = 0; // `counter` is in the outer scope
+
+  function inner() {
+    counter++;
+    console.log(counter);
+  }
+
+  return inner;
+}
+
+const myClosure = outer(); // `outer` returns `inner`, but `counter` still exists
+myClosure(); // 1
+myClosure(); // 2
+myClosure(); // 3
+```
+
+1. outer() runs and returns inner().
+2. inner() remembers the counter variable even though outer() has finished.
+3. This is a closure.
+
+**Why Use Closures?**
+
+1. Data privacy (e.g., private variables).
+2. Stateful functions (like counters).
+3. actory functions that create customized behaviors.
+
+**What is a closure in JavaScript and where would you use it?**
+A closure is a function that has access to its outer function’s variables even after the outer function has returned. Closures are useful for creating private variables and encapsulating state.
+
+**[⬆ Back to Top](#-table-of-contents)**
+
+1. ##
