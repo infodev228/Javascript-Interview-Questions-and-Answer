@@ -10,7 +10,7 @@
 | 6.  | [What is lexical scope in javascript](#what-is-lexical-scope)                                                    |
 | 7.  | [What is Debounce](#what-is-debounce)                                                                            |
 | 8.  | [Write a function sum that can be called like sum(1)(2)(3)...() and returns the total](#infinite-currying)       |
-| 9.  | [What Are Closures in JavaScript](#wha-are-closures-in-javaScript)                                               |
+| 9.  | [What Are Closures in JavaScript](#what-are-closures-in-javaScript)                                              |
 | 10. | [Contact](#contact)                                                                                              |
 
 ## Premitive and non premitive data types
