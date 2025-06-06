@@ -1,17 +1,17 @@
 ## 📋 Table of Contents
 
-| No. | Section / Question                                                              |
-| --- | ------------------------------------------------------------------------------- |
-| 1.  | [Waht is Heap in javascript](#what-is-heap-in-javascript)                       |
-| 2.  | [What is call stack in javascript](#What-is-call-stack-in-javascript)           |
-| 3.  | [What is call back queue in javascript](#what-is-call-back-queue-in-javascript) |
-| 4.  | [What is Event Loop](#what-is-event-loop)                                       |
-| 5.  | [What is lexical scope in javascript](#what-is-lexical-scope)                   |
-| 6.  | [API Reference](#api-reference)                                                 |
-| 7.  | [FAQ](#faq)                                                                     |
-| 8.  | [Contributing](#contributing)                                                   |
-| 9.  | [License](#license)                                                             |
-| 10. | [Contact](#contact)                                                             |
+| No. | Section / Question                                                                                               |
+| --- | ---------------------------------------------------------------------------------------------------------------- |
+| 1.  | [Waht is Heap in javascript](#what-is-heap-in-javascript)                                                        |
+| 2.  | [What is call stack in javascript](#What-is-call-stack-in-javascript)                                            |
+| 3.  | [What is call back queue in javascript](#what-is-call-back-queue-in-javascript)                                  |
+| 4.  | [What is Event Loop](#what-is-event-loop)                                                                        |
+| 5.  | [What is lexical scope in javascript](#what-is-lexical-scope)                                                    |
+| 7.  | [What is the difference between primitive and non-premitive data types](#premitive-and-non-premitive-data-types) |
+| 8.  | [Contributing](#contributing)                                                                                    |
+| 9.  | [License](#license)                                                                                              |
+| 10. | [Contact](#contact)                                                                                              |
+| 11. | [Contact](#contact)                                                                                              |
 
 ## What is Heap in javascript
 
@@ -71,3 +71,45 @@ outer();
 
 `inner() has lexical access to outerVar because it is defined inside the outer() function.
 The scope is based on the nesting structure of functions when the code is written.`
+
+## Premitive and non premitive data types
+
+### Primitive Data Types
+
+These are basic and immutable data types. They store single values, not collections or complex objects.
+
+**Characteristics**
+
+```bash
+Stored by value
+Immutable (can’t be changed directly)
+Compared by value
+```
+
+```javascript
+// Primitive Example
+let x = 5;
+let y = x;
+y = 10;
+
+console.log(x); // 5 (original x is unchanged)
+```
+
+## Non-Primitive (Reference) Data Types
+
+These are complex data types used to store collections or objects.
+
+**Characteristics:**
+
+1. Stored by reference
+2. Mutable (can be changed)
+3. Compared by reference (not by content)
+
+```javascript
+// Non-Primitive Example
+let obj1 = { name: "Alice" };
+let obj2 = obj1;
+obj2.name = "Bob";
+
+console.log(obj1.name); // "Bob" (obj1 changed because obj2 references the same object)
+```
