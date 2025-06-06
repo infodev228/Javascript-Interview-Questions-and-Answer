@@ -141,3 +141,5 @@ console.log(add(1)(2)(3)(4)()); // 10
 ```
 
 `You keep calling add(n), and it keeps returning a new function. The addition happens when you finally call it with no argument (()).`
+
+**[⬆ Back to Top](#table-of-contents)**
