@@ -2,18 +2,56 @@
 
 | No. | Section / Question                                                                                               |
 | --- | ---------------------------------------------------------------------------------------------------------------- |
-| 1.  | [Waht is Heap in javascript](#what-is-heap-in-javascript)                                                        |
-| 2.  | [What is call stack in javascript](#What-is-call-stack-in-javascript)                                            |
-| 3.  | [What is call back queue in javascript](#what-is-call-back-queue-in-javascript)                                  |
-| 4.  | [What is Event Loop](#what-is-event-loop)                                                                        |
-| 5.  | [What is lexical scope in javascript](#what-is-lexical-scope)                                                    |
-| 7.  | [What is the difference between primitive and non-premitive data types](#premitive-and-non-premitive-data-types) |
-| 8.  | [Contributing](#contributing)                                                                                    |
-| 9.  | [License](#license)                                                                                              |
+| 1.  | [What is the difference between primitive and non-premitive data types](#premitive-and-non-premitive-data-types) |
+| 2.  | [Waht is Heap in javascript](#what-is-heap-in-javascript)                                                        |
+| 3.  | [What is call stack in javascript](#What-is-call-stack-in-javascript)                                            |
+| 4.  | [What is call back queue in javascript](#what-is-call-back-queue-in-javascript)                                  |
+| 5.  | [What is Event Loop](#what-is-event-loop)                                                                        |
+| 6.  | [What is lexical scope in javascript](#what-is-lexical-scope)                                                    |
+| 7.  | [What is Debounce](#what-is-debounce)                                                                            |
+| 8.  | [Write a function sum that can be called like sum(1)(2)(3)...() and returns the total](#infinite-currying)       |
+| 9.  | [Contact](#contact)                                                                                              |
 | 10. | [Contact](#contact)                                                                                              |
-| 11. | [Contact](#contact)                                                                                              |
 
-## What is Heap in javascript
+## Premitive and non premitive data types
+
+### Primitive Data Types
+
+These are basic and immutable data types. They store single values, not collections or complex objects.
+
+**Characteristics**
+
+1. Stored by value
+2. Immutable (can’t be changed directly)
+3. Compared by value
+
+```javascript
+// Primitive Example
+let x = 5;
+let y = x;
+y = 10;
+
+console.log(x); // 5 (original x is unchanged)
+```
+
+## Non-Primitive (Reference) Data Types
+
+These are complex data types used to store collections or objects.
+
+**Characteristics:**
+
+1. Stored by reference
+2. Mutable (can be changed)
+3. Compared by reference (not by content)
+
+```javascript
+// Non-Primitive Example
+let obj1 = { name: "Alice" };
+let obj2 = obj1;
+obj2.name = "Bob";
+
+console.log(obj1.name); // "Bob" (obj1 changed because obj2 references the same object)
+```
 
 ## What is call stack in javascript
 
@@ -72,44 +110,34 @@ outer();
 `inner() has lexical access to outerVar because it is defined inside the outer() function.
 The scope is based on the nesting structure of functions when the code is written.`
 
-## Premitive and non premitive data types
+## What is debounce
 
-### Primitive Data Types
-
-These are basic and immutable data types. They store single values, not collections or complex objects.
-
-**Characteristics**
-
-```bash
-Stored by value
-Immutable (can’t be changed directly)
-Compared by value
-```
+Debouncing forces a function to wait a certain amount of time before run again.
 
 ```javascript
-// Primitive Example
-let x = 5;
-let y = x;
-y = 10;
-
-console.log(x); // 5 (original x is unchanged)
+function debounce(func, delay) {
+  let timeoutId;
+  return function (...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(this, args), delay);
+  };
+}
 ```
 
-## Non-Primitive (Reference) Data Types
-
-These are complex data types used to store collections or objects.
-
-**Characteristics:**
-
-1. Stored by reference
-2. Mutable (can be changed)
-3. Compared by reference (not by content)
+## Infinite Currying
 
 ```javascript
-// Non-Primitive Example
-let obj1 = { name: "Alice" };
-let obj2 = obj1;
-obj2.name = "Bob";
+function add(a) {
+  return function (b) {
+    if (b !== undefined) {
+      return add(a + b); // Keep accumulating
+    } else {
+      return a; // Final result
+    }
+  };
+}
 
-console.log(obj1.name); // "Bob" (obj1 changed because obj2 references the same object)
+console.log(add(1)(2)(3)(4)()); // 10
 ```
+
+`You keep calling add(n), and it keeps returning a new function. The addition happens when you finally call it with no argument (()).`
