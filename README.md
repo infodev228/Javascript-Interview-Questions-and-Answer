@@ -89,6 +89,8 @@ Inside setTimeout
 **Notes:**
 Microtasks `(Promises)` are handled before macrotasks `(setTimeout)`.
 
+**[⬆ Back to Top](#-table-of-contents)**
+
 ## What is lexical scope
 
 Lexical scope means a function’s scope is defined by where the function is written in the code. It determines what variables are accessible to the function based on its position in the source code.
@@ -110,6 +112,8 @@ outer();
 `inner() has lexical access to outerVar because it is defined inside the outer() function.
 The scope is based on the nesting structure of functions when the code is written.`
 
+**[⬆ Back to Top](#-table-of-contents)**
+
 ## What is debounce
 
 Debouncing forces a function to wait a certain amount of time before run again.
@@ -123,6 +127,8 @@ function debounce(func, delay) {
   };
 }
 ```
+
+**[⬆ Back to Top](#-table-of-contents)**
 
 ## Infinite Currying
 
