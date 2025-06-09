@@ -3,7 +3,7 @@
 | No. | Section / Question                                                                                               |
 | --- | ---------------------------------------------------------------------------------------------------------------- |
 | 1.  | [What is the difference between primitive and non-premitive data types](#premitive-and-non-premitive-data-types) |
-| 2.  | [Waht is Heap in javascript](#what-is-heap-in-javascript)                                                        |
+| 2.  | [What is Heap in javascript](#what-is-heap-in-javascript)                                                        |
 | 3.  | [What is call stack in javascript](#What-is-call-stack-in-javascript)                                            |
 | 4.  | [What is call back queue in javascript](#what-is-call-back-queue-in-javascript)                                  |
 | 5.  | [What is Event Loop](#what-is-event-loop)                                                                        |
@@ -11,9 +11,10 @@
 | 7.  | [What is Debounce](#what-is-debounce)                                                                            |
 | 8.  | [Write a function sum that can be called like sum(1)(2)(3)...() and returns the total](#infinite-currying)       |
 | 9.  | [What Are Closures in JavaScript](#what-are-closures-in-javaScript)                                              |
-| 10. | [Contact](#contact)                                                                                              |
+| 10. | [Explain why setTimeout printing 3 times inside a loop](#explain-why-setTimeout-printing-3-times-inside-a-loop)  |
+| 11. | [ Types of Type Coercion](#types-of-coercion)                                                                    |
 
-## Premitive and non premitive data types
+1. ## Premitive and non premitive data types
 
 ### Primitive Data Types
 
@@ -53,11 +54,42 @@ obj2.name = "Bob";
 console.log(obj1.name); // "Bob" (obj1 changed because obj2 references the same object)
 ```
 
-1. ## What is call stack in javascript
+2. ## Waht is Heap in javascript
+   Heap is an unstrutured memory that is used for memory allocation of the variables and the objects.
+3. ## What is call stack in javascript
 
-2. ## What is call back queue in javascript
+   The call stack is a data structure that keeps track of the function execution order. Functions are pushed onto the stack when called and popped when completed.
 
-3. ## What is Event Loop
+   ```javascript
+   function greet() {
+     console.log("Hello");
+   }
+   function main() {
+     greet();
+     console.log("World");
+   }
+   main();
+   ```
+
+4. ## What is call back queue in javascript
+   The callback queue is a data struture.the callback queue stores all the callback functions in the order in which they are added.
+
+```javascript
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Timeout callback");
+}, 0);
+
+console.log("End");
+// Start
+// End
+// Timeout callback
+```
+
+Even though the timeout is 0ms, the callback waits until the call stack is empty before being executed.
+
+5. ## What is Event Loop
 
 The event loop monitors the call stack and callback queue. If the stack is empty, it pushes the first callback from the queue into the stack.
 
@@ -91,7 +123,7 @@ Microtasks `(Promises)` are handled before macrotasks `(setTimeout)`.
 
 **[⬆ Back to Top](#-table-of-contents)**
 
-4. ## What is lexical scope
+6. ## What is lexical scope
 
 Lexical scope means a function’s scope is defined by where the function is written in the code. It determines what variables are accessible to the function based on its position in the source code.
 
@@ -114,7 +146,7 @@ The scope is based on the nesting structure of functions when the code is writte
 
 **[⬆ Back to Top](#-table-of-contents)**
 
-5. ## What is debounce
+7. ## What is debounce
 
 Debouncing forces a function to wait a certain amount of time before run again.
 
@@ -130,7 +162,7 @@ function debounce(func, delay) {
 
 **[⬆ Back to Top](#-table-of-contents)**
 
-6. ## Infinite Currying
+8. ## Infinite Currying
 
 ```javascript
 function add(a) {
@@ -150,7 +182,7 @@ console.log(add(1)(2)(3)(4)()); // 10
 
 **[⬆ Back to Top](#-table-of-contents)**
 
-7.  ## What Are Closures in JavaScript?
+9.  ## What Are Closures in JavaScript?
 
     A closure is a function that remembers the variables from its lexical scope even when that function is executed outside of that scope.
 
@@ -187,4 +219,79 @@ A closure is a function that has access to its outer function’s variables even
 
 **[⬆ Back to Top](#-table-of-contents)**
 
-1. ##
+10. ## Explain why setTimeout printing 3 times inside a loop
+
+```javascript
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => {
+    console.log(i);
+  }, 0);
+}
+```
+
+**what is happening:**
+You are using a for loop with var, and inside each iteration, you're setting a setTimeout with a delay of `0` milliseconds to print `i`.
+**Key concept:**
+
+1. var is function-scoped – meaning the variable i is shared across all iterations of the loop, not block-scoped like let.
+2. setTimeout is asynchronous – it queues the callback to run after the current execution stack (the loop) finishes.
+3. The loop completes before the setTimeout callbacks execute – by the time setTimeout runs, i has already reached 3.
+   **Execution Flow:**
+   `Step 1:` Loop starts, i = 0, schedules setTimeout to print i.
+   `Step 2:` i = 1, schedules another setTimeout.
+   `Step 3:` i = 2, schedules another setTimeout.
+   `Step 4:` Loop ends, i = 3.
+   `Step 5:` Now the JavaScript event loop processes the 3 scheduled setTimeout callbacks.
+   `Step 6:` Each callback accesses the same i, which is now 3.
+
+   **How to Fix It:**
+   Use let instead of var, so each iteration gets a new block-scoped i.
+   or Using IIFE(Immediately Invoked Function Expression)
+
+   ```javascript
+   for (let i = 0; i < 3; i++) {
+     setTimeout(() => {
+       console.log(i);
+     }, 0);
+   }
+   // using IFFE
+   for (var i = 0; i < 3; i++) {
+     (function (j) {
+       setTimeout(() => {
+         console.log(j);
+       }, 0);
+     })(i);
+   }
+   ```
+
+## Types of Type Coercion
+
+There are two types of coercion in JavaScript:
+
+1. Implicit Coercion
+   JavaScript automatically converts data types when needed.
+
+2. Explicit Coercion
+   You manually convert data types using functions or operators.
+
+   **Implicit Coercion (Automatic)**
+   JavaScript automatically converts types when using operators like +, ==, etc.
+
+   ```javascript
+   "5" + 1; // '51'   -> number 1 is coerced to string
+   "5" - 1; // 4      -> string '5' is coerced to number
+   true + 1; // 2      -> true becomes 1
+   false == 0; // true   -> false is coerced to 0
+   null == undefined; // true -> loose equality comparison
+   ```
+
+   **Explicit Coercion (Manual)**
+   You convert values on purpose using functions like Number(), String(), Boolean().
+
+   ```javascript
+   Number("123"); // 123
+   String(123); // '123'
+   Boolean(0); // false
+   Boolean("hello"); // true
+   parseInt("42px"); // 42
+   ```
