@@ -1,18 +1,22 @@
 ## 📋 Table of Contents
 
-| No. | Section / Question                                                                                               |
-| --- | ---------------------------------------------------------------------------------------------------------------- |
-| 1.  | [What is the difference between primitive and non-premitive data types](#premitive-and-non-premitive-data-types) |
-| 2.  | [What is Heap in javascript](#what-is-heap-in-javascript)                                                        |
-| 3.  | [What is call stack in javascript](#What-is-call-stack-in-javascript)                                            |
-| 4.  | [What is call back queue in javascript](#what-is-call-back-queue-in-javascript)                                  |
-| 5.  | [What is Event Loop](#what-is-event-loop)                                                                        |
-| 6.  | [What is lexical scope in javascript](#what-is-lexical-scope)                                                    |
-| 7.  | [What is Debounce](#what-is-debounce)                                                                            |
-| 8.  | [Write a function sum that can be called like sum(1)(2)(3)...() and returns the total](#infinite-currying)       |
-| 9.  | [What Are Closures in JavaScript](#what-are-closures-in-javaScript)                                              |
-| 10. | [Explain why setTimeout printing 3 times inside a loop](#explain-why-setTimeout-printing-3-times-inside-a-loop)  |
-| 11. | [ Types of Type Coercion](#types-of-coercion)                                                                    |
+| No. | Section / Question                                                                                                                                   |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.  | [What is the difference between primitive and non-premitive data types](#premitive-and-non-premitive-data-types)                                     |
+| 2.  | [What is Heap in javascript](#what-is-heap-in-javascript)                                                                                            |
+| 3.  | [What is call stack in javascript](#What-is-call-stack-in-javascript)                                                                                |
+| 4.  | [What is call back queue in javascript](#what-is-call-back-queue-in-javascript)                                                                      |
+| 5.  | [What is Event Loop](#what-is-event-loop)                                                                                                            |
+| 6.  | [What is lexical scope in javascript](#what-is-lexical-scope)                                                                                        |
+| 7.  | [What is Debounce](#what-is-debounce)                                                                                                                |
+| 8.  | [Write a function sum that can be called like sum(1)(2)(3)...() and returns the total](#infinite-currying)                                           |
+| 9.  | [What Are Closures in JavaScript](#what-are-closures-in-javaScript)                                                                                  |
+| 10. | [Explain why setTimeout printing 3 times inside a loop](#explain-why-setTimeout-printing-3-times-inside-a-loop)                                      |
+| 11. | [ Types of Type Coercion](#types-of-coercion)                                                                                                        |
+| 12. | [Write a function to flatten multidimensional/nested array into single array](#Write-a-function-to-flatten-multidimensional-array-into-single-array) |
+| 13. | [Write a function group by on an array of objects](#write-a-function-group-by-on-an-array-of-objects)                                                |
+| 14. | [Write a polyfill of map function](#write-a-polyfill-of-map-function)                                                                                |
+| 15. | [Write a polyfill of filter function](#write-a-polyfill-of-filter-function)                                                                          |
 
 1. ## Premitive and non premitive data types
 
@@ -264,34 +268,141 @@ You are using a for loop with var, and inside each iteration, you're setting a s
    }
    ```
 
+   **[⬆ Back to Top](#-table-of-contents)**
+
 ## Types of Type Coercion
 
 There are two types of coercion in JavaScript:
 
-1. Implicit Coercion
-   JavaScript automatically converts data types when needed.
+**Implicit Coercion**
+JavaScript automatically converts data types when needed.
 
-2. Explicit Coercion
-   You manually convert data types using functions or operators.
+**Explicit Coercion**
+You manually convert data types using functions or operators.
 
-   **Implicit Coercion (Automatic)**
-   JavaScript automatically converts types when using operators like +, ==, etc.
+**Implicit Coercion (Automatic)**
+JavaScript automatically converts types when using operators like +, ==, etc.
 
-   ```javascript
-   "5" + 1; // '51'   -> number 1 is coerced to string
-   "5" - 1; // 4      -> string '5' is coerced to number
-   true + 1; // 2      -> true becomes 1
-   false == 0; // true   -> false is coerced to 0
-   null == undefined; // true -> loose equality comparison
-   ```
+```javascript
+"5" + 1; // '51'   -> number 1 is coerced to string
+"5" - 1; // 4      -> string '5' is coerced to number
+true + 1; // 2      -> true becomes 1
+false == 0; // true   -> false is coerced to 0
+null == undefined; // true -> loose equality comparison
+```
 
-   **Explicit Coercion (Manual)**
-   You convert values on purpose using functions like Number(), String(), Boolean().
+**Explicit Coercion (Manual)**
+You convert values on purpose using functions like Number(), String(), Boolean().
 
-   ```javascript
-   Number("123"); // 123
-   String(123); // '123'
-   Boolean(0); // false
-   Boolean("hello"); // true
-   parseInt("42px"); // 42
-   ```
+```javascript
+Number("123"); // 123
+String(123); // '123'
+Boolean(0); // false
+Boolean("hello"); // true
+parseInt("42px"); // 42
+```
+
+**[⬆ Back to Top](#-table-of-contents)**
+
+12. ## Write a function to flatten multidimensional array into single array
+
+```javascript
+function flattenArray(arr) {
+  const result = [];
+
+  for (let item of arr) {
+    if (Array.isArray(item)) {
+      result.push(...flattenArray(item)); // Recursively flatten
+    } else {
+      result.push(item);
+    }
+  }
+
+  return result;
+}
+
+// Example usage:
+const nested = [1, [2, [3, 4], 5], 6];
+console.log(flattenArray(nested)); // Output: [1, 2, 3, 4, 5, 6]
+```
+
+**[⬆ Back to Top](#-table-of-contents)**
+
+13. ## Write a function group by on an array of objects
+
+```javascript
+const users = [
+  {
+    name: "Jim",
+    color: "blue",
+  },
+  {
+    name: "Sam",
+    color: "blue",
+  },
+  {
+    name: "Eddie",
+    color: "green",
+  },
+  {
+    name: "Robert",
+    color: "green",
+  },
+];
+const groupBy = (arr, key) => {
+  const initialValue = {};
+  return arr.reduce((acc, cval) => {
+    const myAttribute = cval[key];
+    acc[myAttribute] = [...(acc[myAttribute] || []), cval];
+    return acc;
+  }, initialValue);
+};
+
+const res = groupBy(users, "color");
+console.log("group by:", res);
+```
+
+**[⬆ Back to Top](#-table-of-contents)**
+
+14. ## Write a polyfill of map function
+
+```javascript
+Array.prototype.myMap = function (callbackFun) {
+  let newArray = [];
+  for (let i = 0; i < this.length; i++) {
+    newArray.push(callbackFun(this[i], i, this));
+  }
+  return newArray;
+};
+let arr = [10, 20, 30];
+let newArr = arr.myMap((x) => {
+  return x * 2;
+});
+console.log(newArr);
+// output : [ 20, 40, 60 ]
+```
+
+**[⬆ Back to Top](#-table-of-contents)**
+
+15. ## Write a polyfill of filter function
+
+```javascript
+Array.prototype.myFilter = function (callbackFun) {
+  let newArray = [];
+  for (let i = 0; i < this.length; i++) {
+    if (callbackFun(this[i], i, this)) {
+      newArray.push(this[i]);
+    }
+  }
+  return newArray;
+};
+let arr = [10, 15, 30];
+
+let newArr = arr.myFilter((x) => {
+  return x % 10 == 0;
+});
+console.log(newArr);
+// Output:  [10 , 30]
+```
+
+**[⬆ Back to Top](#-table-of-contents)**
