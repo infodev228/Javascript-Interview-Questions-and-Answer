@@ -58,7 +58,7 @@ obj2.name = "Bob";
 console.log(obj1.name); // "Bob" (obj1 changed because obj2 references the same object)
 ```
 
-2. ## Waht is Heap in javascript
+2. ## What is Heap in javascript
    Heap is an unstrutured memory that is used for memory allocation of the variables and the objects.
 3. ## What is call stack in javascript
 
