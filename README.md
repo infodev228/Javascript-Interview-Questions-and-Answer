@@ -17,6 +17,8 @@
 | 13. | [Write a function group by on an array of objects](#write-a-function-group-by-on-an-array-of-objects)                                                |
 | 14. | [Write a polyfill of map function](#write-a-polyfill-of-map-function)                                                                                |
 | 15. | [Write a polyfill of filter function](#write-a-polyfill-of-filter-function)                                                                          |
+| 16. | [What is Recursion in JavaScript?](#wWhat-is-recursion-in-javaScript)                                                                                |
+| 17. | [Reverse a String Recursively](#reverse-a-string-recursively)                                                                                        |
 
 1. ## Premitive and non premitive data types
 
@@ -38,6 +40,8 @@ y = 10;
 
 console.log(x); // 5 (original x is unchanged)
 ```
+
+---
 
 ## Non-Primitive (Reference) Data Types
 
@@ -403,6 +407,33 @@ let newArr = arr.myFilter((x) => {
 });
 console.log(newArr);
 // Output:  [10 , 30]
+```
+
+**[⬆ Back to Top](#-table-of-contents)**
+
+16. ## What is Recursion in JavaScript?
+    **Recursion** is a programming concept where a function calls itself directly or indirectly in order to solve a problem. Each recursive call should bring the problem closer to a base case, which is the condition that stops the recursion.
+
+```javascript
+function factorial(n) {
+  if (n === 0 || n === 1) return 1; // base case
+  return n * factorial(n - 1); // recursive call
+}
+
+console.log(factorial(5)); // Output: 120
+```
+
+**[⬆ Back to Top](#-table-of-contents)**
+
+17. ## Reverse a String Recursively
+
+```javascript
+function reverseString(str) {
+  if (str === "") return "";
+  return reverseString(str.slice(1)) + str[0];
+}
+
+console.log(reverseString("hello")); // Output: "olleh"
 ```
 
 **[⬆ Back to Top](#-table-of-contents)**
