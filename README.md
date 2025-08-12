@@ -1,3 +1,5 @@
+This repository aims to add more JavaScript interview questions and answers.
+
 ## 📋 Table of Contents
 
 | No. | Section / Question                                                                                                                                   |
