@@ -467,7 +467,20 @@ obj = arr.reduce((ac, iterate, i) => ({ ...ac, [i]: iterate }), {});
 
 19. ## // validate value is a valid positive integer, otherwise through correct error
 
-    validateInput(-5);
+```javascript
+function validateInput(value) {
+  if (typeof value === "number" && Number.isInteger(value) && value > 0) {
+    return "Postive number";
+  } else {
+    throw new Error("not valid number");
+  }
+}
+try {
+  validateInput(10);
+} catch (error) {
+  console.error("Validation error:", error.message);
+}
+```
 
 20. ## write a function to check given string is a palindrome without inbuilt in function
 
