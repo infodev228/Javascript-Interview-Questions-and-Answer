@@ -21,6 +21,9 @@ This repository aims to add more JavaScript interview questions and answers.
 | 15. | [Write a polyfill of filter function](#write-a-polyfill-of-filter-function)                                                                          |
 | 16. | [What is Recursion in JavaScript?](#wWhat-is-recursion-in-javaScript)                                                                                |
 | 17. | [Reverse a String Recursively](#reverse-a-string-recursively)                                                                                        |
+| 18. | [Write a function to count each charter](#write-a-function-to-count-each-charter)                                                                    |
+| 19. | [Write a palindrome function without using built in function](#write-a-function-to-check-given-string-is-a-palindrome-without-inbuilt-in-function)   |
+| 20. | [](#)                                                                                                                                                |
 
 1. ## Premitive and non premitive data types
 
@@ -439,3 +442,46 @@ console.log(reverseString("hello")); // Output: "olleh"
 ```
 
 **[⬆ Back to Top](#-table-of-contents)**
+
+18. ## Write a function to count each charter
+
+```javascript
+function countChar(str) {
+  const obj = {};
+  for (let x of str) {
+    if (obj[x]) {
+      obj[x] += 1;
+    } else {
+      obj[x] = 1;
+    }
+  }
+  return obj;
+}
+```
+
+19. ## Convert array into object
+
+```javascript
+obj = arr.reduce((ac, iterate, i) => ({ ...ac, [i]: iterate }), {});
+```
+
+19. ## // validate value is a valid positive integer, otherwise through correct error
+
+    validateInput(-5);
+
+20. ## write a function to check given string is a palindrome without inbuilt in function
+
+```javascript
+function isPalindrome(str) {
+  let len = str.length;
+
+  for (let i = 0; i < len / 2; i++) {
+    if (str[i] !== str[len - 1 - i]) {
+      console.log("String is not palindrome");
+      return false;
+    }
+  }
+  console.log("String is palindrome");
+  return true;
+}
+```
